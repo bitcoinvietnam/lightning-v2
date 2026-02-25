@@ -1,0 +1,16 @@
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      {% for stat in site.stats %}
+        <div class="stat-card reveal{% if loop.index0 > 0 %} reveal-delay-{{ loop.index0 }}{% endif %}">
+          {% if stat.countTo !== undefined %}
+            <div class="stat-value" data-count-to="{{ stat.countTo }}" data-prefix="{{ stat.prefix }}" data-suffix="{{ stat.suffix }}"{% if stat.decimals %} data-decimals="{{ stat.decimals }}"{% endif %}{% if stat.useComma %} data-comma="true"{% endif %}>{{ stat.value }}</div>
+          {% else %}
+            <div class="stat-value">{{ stat.value }}</div>
+          {% endif %}
+          <div class="stat-label">{{ stat.label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

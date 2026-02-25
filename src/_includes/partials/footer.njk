@@ -1,0 +1,30 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <img src="images/logo_dark.webp" alt="BitcoinVN" class="logo-img" />
+          <span class="logo-divider"></span>
+          <span class="logo-sub">Lightning</span>
+        </a>
+        <p>{{ site.footer.description }}</p>
+      </div>
+      {% for col in site.footer.columns %}
+        <div class="footer-col">
+          <h4>{{ col.title }}</h4>
+          {% for link in col.links %}
+            <a href="{{ link.href }}">{{ link.label }}</a>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="footer-bottom">
+      <span>{{ site.footer.copyright }}</span>
+      <div class="footer-social">
+        {% for social in site.footer.social %}
+          <a href="{{ social.href }}">{{ social.label }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</footer>

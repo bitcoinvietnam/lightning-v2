@@ -1,0 +1,302 @@
+{
+  "meta": {
+    "title": "BitcoinVN Lightning — Instant Bitcoin Payments",
+    "description": "BitcoinVN operates a premier Lightning node — powering fast BTC-to-VND settlements across Vietnam.",
+    "url": "https://bitcoinvn.io"
+  },
+  "nav": {
+    "brand": "BitcoinVN",
+    "brandAccent": "Lightning",
+    "links": [
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Benefits",
+        "href": "#benefits"
+      },
+      {
+        "label": "How It Works",
+        "href": "#how-it-works"
+      },
+      {
+        "label": "Node",
+        "href": "#node"
+      }
+    ],
+    "cta": {
+      "label": "Exchange BTC",
+      "href": "#exchange"
+    }
+  },
+  "hero": {
+    "badge": "Network Active — 16,000+ Nodes Online",
+    "headlinePart1": "Bitcoin Payments",
+    "headlinePart2": "at the",
+    "headlineAccent": "Speed of Light",
+    "description": "Instant Bitcoin transactions with near-zero fees. BitcoinVN powers fast BTC-to-VND settlements across Vietnam.",
+    "primaryCta": {
+      "label": "Connect to Our Node",
+      "href": "#node"
+    },
+    "secondaryCta": {
+      "label": "Learn More",
+      "href": "#about"
+    }
+  },
+  "stats": [
+    {
+      "value": "<1s",
+      "label": "Transaction Speed",
+      "countTo": 1,
+      "prefix": "<",
+      "suffix": "s"
+    },
+    {
+      "value": "~0.01%",
+      "label": "Average Fee",
+      "countTo": 0.01,
+      "prefix": "~",
+      "suffix": "%",
+      "decimals": 2
+    },
+    {
+      "value": "5,400+",
+      "label": "BTC Capacity",
+      "countTo": 5400,
+      "prefix": "",
+      "suffix": "+",
+      "useComma": true
+    },
+    {
+      "value": "24/7",
+      "label": "Node Uptime"
+    }
+  ],
+  "about": {
+    "tag": "Lightning Network",
+    "title": "Bitcoin's",
+    "titleAccent": "Second Layer",
+    "titleSuffix": "for Instant Payments",
+    "paragraphs": [
+      "Bitcoin is the world's most trusted cryptocurrency — but its base layer handles only ~7 transactions per second to preserve decentralization.",
+      "The Lightning Network is a Layer 2 protocol that creates payment channels between users, enabling millions of transactions per second off-chain."
+    ],
+    "highlight": "Payment data stays between peers. The Bitcoin blockchain serves only as the final settlement layer — preserving speed and privacy."
+  },
+  "benefits": {
+    "tag": "Why Lightning?",
+    "title": "Unlock the Full Power of",
+    "titleAccent": "Bitcoin",
+    "description": "Enhanced scalability and privacy while keeping Bitcoin's base layer secure.",
+    "items": [
+      {
+        "title": "Instant Transactions",
+        "description": "Settle in milliseconds — no block confirmations needed. Ideal for point-of-sale and real-time commerce."
+      },
+      {
+        "title": "Near-Zero Fees",
+        "description": "Costs are a fraction of a cent, making micropayments and small transfers viable for the first time."
+      },
+      {
+        "title": "Massive Scalability",
+        "description": "Millions of transactions per second across channels — surpassing traditional payment processors."
+      },
+      {
+        "title": "Enhanced Privacy",
+        "description": "Transactions stay off-chain between peers. Only final balances hit the blockchain, keeping payment details private."
+      },
+      {
+        "title": "Bank Account Funding",
+        "description": "Send Bitcoin via Lightning and receive VND directly in your bank account through BitcoinVN — instantly."
+      },
+      {
+        "title": "Global Reach",
+        "description": "Pay anyone, anywhere, instantly. No intermediaries, no borders — pure peer-to-peer value transfer."
+      }
+    ]
+  },
+  "howItWorks": {
+    "tag": "How It Works",
+    "title": "Three Steps to",
+    "titleAccent": "Lightning Speed",
+    "description": "",
+    "steps": [
+      {
+        "title": "Open a Channel",
+        "description": "Lock Bitcoin in a multi-sig address on-chain to create a payment channel. One transaction is all it takes."
+      },
+      {
+        "title": "Transact Instantly",
+        "description": "Send unlimited payments off-chain in milliseconds. Routed through the network — no miners, no waiting."
+      },
+      {
+        "title": "Settle On-Chain",
+        "description": "Close the channel anytime. Final balances settle on-chain, secured by Bitcoin's proof-of-work."
+      }
+    ]
+  },
+  "node": {
+    "tag": "Connect",
+    "title": "BitcoinVN Lightning",
+    "titleAccent": "Node",
+    "description": "Enterprise-grade Lightning infrastructure. Whitelist access since Oct 2023.",
+    "name": "BitcoinVN 22",
+    "subtitle": "",
+    "status": "Online",
+    "pubkey": "026af41af0e3861ba170cc0eef8f45a1015125dac57c28df53752dcaeea793b28f",
+    "mempoolUrl": "https://mempool.space/lightning/node/026af41af0e3861ba170cc0eef8f45a1015125dac57c28df53752dcaeea793b28f",
+    "info": [
+      {
+        "label": "Access",
+        "value": "Whitelist Only",
+        "color": "accent"
+      },
+      {
+        "label": "Since",
+        "value": "October 2023",
+        "color": ""
+      },
+      {
+        "label": "Availability",
+        "value": "99.9% Uptime",
+        "color": "green"
+      },
+      {
+        "label": "Location",
+        "value": "Vietnam",
+        "color": ""
+      }
+    ],
+    "footerText": "Contact us via <a href=\"https://twitter.com/Bitcoin_Vietnam/\" target=\"_blank\" rel=\"noopener\">Twitter</a> or <a href=\"mailto:support@bitcoinvn.io\">email</a> to get whitelisted.",
+    "footerCta": {
+      "label": "Request Access",
+      "href": "https://twitter.com/Bitcoin_Vietnam/"
+    }
+  },
+  "useCases": {
+    "tag": "Use Cases",
+    "title": "Built for",
+    "titleAccent": "Real-World",
+    "titleSuffix": "Payments",
+    "description": "From retail to remittances — Lightning powers next-generation Bitcoin commerce.",
+    "items": [
+      {
+        "title": "Point-of-Sale Payments",
+        "description": "Accept Bitcoin with instant settlement. No chargebacks, no processing delays."
+      },
+      {
+        "title": "Cross-Border Remittances",
+        "description": "Send money across borders in seconds at a fraction of wire transfer costs."
+      },
+      {
+        "title": "API & Developer Integrations",
+        "description": "Integrate Lightning payments into your app. Programmable money for modern fintech."
+      },
+      {
+        "title": "Micropayments & Streaming",
+        "description": "Pay per article, per second, or per API call. Sub-cent transactions, finally viable."
+      }
+    ]
+  },
+  "cta": {
+    "headlinePart1": "Exchange Bitcoin to VND",
+    "headlineAccent": "Instantly via Lightning",
+    "description": "Fund your Vietnamese bank account in seconds — the fastest BTC settlement in the market.",
+    "primaryCta": {
+      "label": "Start Trading on BitcoinVN",
+      "href": "https://bitcoinvn.io/?deposit=btcln&settle=vnd",
+      "external": true
+    },
+    "secondaryCta": {
+      "label": "Connect Your Node",
+      "href": "#node"
+    }
+  },
+  "footer": {
+    "brand": "BitcoinVN",
+    "brandAccent": "Lightning",
+    "description": "Vietnam's leading Bitcoin exchange and Lightning infrastructure. Trusted since 2014.",
+    "columns": [
+      {
+        "title": "Services",
+        "links": [
+          {
+            "label": "Exchange",
+            "href": "#"
+          },
+          {
+            "label": "OTC Trading",
+            "href": "#"
+          },
+          {
+            "label": "Lightning Node",
+            "href": "#"
+          },
+          {
+            "label": "BTM Locations",
+            "href": "#"
+          }
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          {
+            "label": "Lightning Knowledge Base",
+            "href": "#"
+          },
+          {
+            "label": "BitcoinVN News",
+            "href": "#"
+          },
+          {
+            "label": "API Documentation",
+            "href": "#"
+          },
+          {
+            "label": "System Status",
+            "href": "#"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "label": "About Us",
+            "href": "#"
+          },
+          {
+            "label": "Newsletter",
+            "href": "#"
+          },
+          {
+            "label": "Careers",
+            "href": "#"
+          },
+          {
+            "label": "Contact",
+            "href": "#"
+          }
+        ]
+      }
+    ],
+    "copyright": "2024 BitcoinVN. All rights reserved.",
+    "social": [
+      {
+        "label": "Twitter",
+        "href": "#"
+      },
+      {
+        "label": "Telegram",
+        "href": "#"
+      },
+      {
+        "label": "GitHub",
+        "href": "#"
+      }
+    ]
+  }
+}

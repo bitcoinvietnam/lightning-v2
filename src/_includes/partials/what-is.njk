@@ -1,0 +1,19 @@
+<section class="what-is section" id="about">
+  <div class="container">
+    <div class="what-is-grid">
+      <div class="what-is-visual reveal reveal-left">
+        <div class="network-diagram">
+          <canvas id="lightningNetCanvas" width="400" height="400"></canvas>
+        </div>
+      </div>
+      <div class="what-is-text reveal reveal-right">
+        <div class="section-tag">{{ site.about.tag }}</div>
+        <h2>{{ site.about.title }} <span class="gradient-text">{{ site.about.titleAccent }}</span> {{ site.about.titleSuffix }}</h2>
+        {% for paragraph in site.about.paragraphs %}
+          <p>{{ paragraph }}</p>
+        {% endfor %}
+        <div class="highlight-box">{{ site.about.highlight }}</div>
+      </div>
+    </div>
+  </div>
+</section>

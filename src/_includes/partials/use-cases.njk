@@ -1,0 +1,18 @@
+<section class="use-cases section" id="use-cases">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">{{ site.useCases.tag }}</div>
+      <h2>{{ site.useCases.title }} <span class="gradient-text">{{ site.useCases.titleAccent }}</span> {{ site.useCases.titleSuffix }}</h2>
+      <p>{{ site.useCases.description }}</p>
+    </div>
+    <div class="use-cases-grid reveal">
+      {% for item in site.useCases.items %}
+        <div class="use-case-card">
+          <div class="use-case-number">{{ loop.index | pad(2) }}</div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,66 @@
+<section class="node-section section" id="node">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">{{ site.node.tag }}</div>
+      <h2>{{ site.node.title }} <span class="gradient-text">{{ site.node.titleAccent }}</span></h2>
+      <p>{{ site.node.description }}</p>
+    </div>
+    <div class="node-card reveal">
+      <div class="node-header">
+        <div class="node-title">
+          <div class="node-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div>
+            <h3>{{ site.node.name }}</h3>
+            {% if site.node.subtitle %}<span>{{ site.node.subtitle }}</span>{% endif %}
+          </div>
+        </div>
+        <div class="node-status">
+          <div class="dot"></div>
+          {{ site.node.status }}
+        </div>
+      </div>
+      <div class="node-body">
+        <div class="pubkey-section">
+          <div class="pubkey-label">Public Key</div>
+          <div class="pubkey-value" id="pubkey" title="Click to copy" onclick="copyPubkey()">
+            <span>{{ site.node.pubkey }}</span>
+            <span class="pubkey-hint">Click to copy</span>
+            <button class="copy-btn" aria-label="Copy">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="node-info-grid">
+          {% for info in site.node.info %}
+            <div class="node-info-item">
+              <div class="label">{{ info.label }}</div>
+              <div class="value{% if info.color === 'accent' %} text-accent{% elif info.color === 'green' %} text-green{% endif %}">{{ info.value }}</div>
+            </div>
+          {% endfor %}
+        </div>
+        {% if site.node.mempoolUrl %}
+        <div class="node-mempool">
+          <a href="{{ site.node.mempoolUrl }}" target="_blank" rel="noopener" class="mempool-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            View on mempool.space
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <div class="node-footer">
+        <p>{{ site.node.footerText | safe }}</p>
+        <a href="{{ site.node.footerCta.href }}" class="btn btn-primary" target="_blank" rel="noopener">{{ site.node.footerCta.label }}</a>
+      </div>
+    </div>
+  </div>
+</section>

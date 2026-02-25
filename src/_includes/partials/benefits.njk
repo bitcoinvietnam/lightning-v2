@@ -1,0 +1,18 @@
+<section class="benefits section" id="benefits">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">{{ site.benefits.tag }}</div>
+      <h2>{{ site.benefits.title }} <span class="gradient-text">{{ site.benefits.titleAccent }}</span></h2>
+      <p>{{ site.benefits.description }}</p>
+    </div>
+    <div class="benefits-grid reveal">
+      {% for item in site.benefits.items %}
+        <div class="benefit-card">
+          <div class="benefit-number">{{ loop.index | pad(2) }}</div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

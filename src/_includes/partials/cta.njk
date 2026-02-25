@@ -1,0 +1,12 @@
+<section class="cta-section" id="exchange">
+  <div class="container">
+    <div class="cta-content reveal">
+      <h2>{{ site.cta.headlinePart1 }}<br /><span class="gradient-text">{{ site.cta.headlineAccent }}</span></h2>
+      <p>{{ site.cta.description }}</p>
+      <div class="cta-actions">
+        <a href="{{ site.cta.primaryCta.href }}" class="btn btn-primary"{% if site.cta.primaryCta.external %} target="_blank" rel="noopener"{% endif %}>{{ site.cta.primaryCta.label }}</a>
+        <a href="{{ site.cta.secondaryCta.href }}" class="btn btn-outline">{{ site.cta.secondaryCta.label }}</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,157 @@
+<section class="how-it-works section" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-tag">{{ site.howItWorks.tag }}</div>
+      <h2>{{ site.howItWorks.title }} <span class="gradient-text">{{ site.howItWorks.titleAccent }}</span></h2>
+      {% if site.howItWorks.description %}<p>{{ site.howItWorks.description }}</p>{% endif %}
+    </div>
+
+    <div class="steps-flow">
+
+      {# ===== Step 1: Open a Channel ===== #}
+      <div class="step-row step-1 reveal">
+        <div class="step-visual">
+          <svg viewBox="0 0 250 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="glowLine" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <circle class="sv-node-glow sv-node-glow-gold" cx="55" cy="70" r="22" fill="rgba(232,183,48,0.1)"/>
+            <circle class="sv-node sv-node-gold" cx="55" cy="70" r="11" fill="#e8b730" opacity="0.85"/>
+            <circle class="sv-node-glow sv-node-glow-blue" cx="195" cy="70" r="22" fill="rgba(26,111,196,0.1)"/>
+            <circle class="sv-node sv-node-blue" cx="195" cy="70" r="11" fill="#1a6fc4" opacity="0.85"/>
+            <line class="sv-channel-line" x1="68" y1="70" x2="182" y2="70"
+              stroke="#1a6fc4" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
+            <line class="sv-channel-glow" x1="68" y1="70" x2="182" y2="70"
+              stroke="#e8b730" stroke-width="2.5" stroke-linecap="round"
+              filter="url(#glowLine)" opacity="0"/>
+            <g class="sv-lock" transform="translate(125, 69)">
+              <circle cx="0" cy="1" r="14" fill="#060d13" opacity="0.8"/>
+              <rect x="-8" y="-3" width="16" height="12" rx="2.5" fill="none" stroke="#e8b730" stroke-width="1.5"/>
+              <path class="sv-lock-shackle" d="M-5,-3 L-5,-8 A5,5 0 0,1 5,-8 L5,-3" fill="none" stroke="#e8b730" stroke-width="1.5"/>
+              <circle cx="0" cy="3" r="2" fill="#e8b730"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-text">
+          <div class="step-number">01</div>
+          <h3>{{ site.howItWorks.steps[0].title }}</h3>
+          <p>{{ site.howItWorks.steps[0].description }}</p>
+        </div>
+      </div>
+
+      {# ===== Connector 1→2 (curves right to left) ===== #}
+      <div class="step-connector reveal reveal-delay-1">
+        <svg viewBox="0 0 600 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <defs>
+            <marker id="arrowDown1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M1,1 L4,6 L7,1" fill="none" stroke="#e8b730" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <path class="sv-connector-path" d="M 420,0 C 420,40 180,40 180,80"
+            stroke="rgba(232,183,48,0.2)" stroke-width="1.5" stroke-dasharray="6 4"
+            fill="none" marker-end="url(#arrowDown1)"/>
+        </svg>
+      </div>
+
+      {# ===== Step 2: Transact Instantly (reversed) ===== #}
+      <div class="step-row step-row--reverse step-2 reveal reveal-delay-1">
+        <div class="step-visual">
+          <svg viewBox="0 0 250 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="pktGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <circle class="sv-node-glow sv-node-glow-gold" cx="35" cy="70" r="22" fill="rgba(232,183,48,0.1)"/>
+            <circle class="sv-node sv-node-gold" cx="35" cy="70" r="11" fill="#e8b730" opacity="0.85"/>
+            <circle class="sv-node-glow sv-node-glow-blue" cx="215" cy="70" r="22" fill="rgba(26,111,196,0.1)"/>
+            <circle class="sv-node sv-node-blue" cx="215" cy="70" r="11" fill="#1a6fc4" opacity="0.85"/>
+            <line x1="48" y1="70" x2="202" y2="70"
+              stroke="rgba(26,111,196,0.25)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <circle class="sv-packet sv-packet-r1" cx="48" cy="70" r="4" fill="#e8b730" filter="url(#pktGlow)"/>
+            <circle class="sv-packet sv-packet-r2" cx="48" cy="70" r="3.5" fill="#34d399" filter="url(#pktGlow)"/>
+            <circle class="sv-packet sv-packet-l1" cx="202" cy="70" r="3.5" fill="#e8b730" filter="url(#pktGlow)"/>
+            <g class="sv-bolt-icon" transform="translate(125, 70)" opacity="0.6">
+              <path d="M1,-10 L-6,1 L0,1 L-1,10 L6,-1 L0,-1 Z" fill="#e8b730" opacity="0.5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-text">
+          <div class="step-number">02</div>
+          <h3>{{ site.howItWorks.steps[1].title }}</h3>
+          <p>{{ site.howItWorks.steps[1].description }}</p>
+        </div>
+      </div>
+
+      {# ===== Connector 2→3 (curves left to right) ===== #}
+      <div class="step-connector reveal reveal-delay-2">
+        <svg viewBox="0 0 600 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <defs>
+            <marker id="arrowDown2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M1,1 L4,6 L7,1" fill="none" stroke="#e8b730" stroke-width="1.5" stroke-linecap="round"/>
+            </marker>
+          </defs>
+          <path class="sv-connector-path" d="M 180,0 C 180,40 420,40 420,80"
+            stroke="rgba(232,183,48,0.2)" stroke-width="1.5" stroke-dasharray="6 4"
+            fill="none" marker-end="url(#arrowDown2)"/>
+        </svg>
+      </div>
+
+      {# ===== Step 3: Settle On-Chain ===== #}
+      <div class="step-row step-3 reveal reveal-delay-2">
+        <div class="step-visual">
+          <svg viewBox="0 0 250 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="blockGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            {# Two nodes #}
+            <circle class="sv-node-glow sv-settle-node-glow-l" cx="75" cy="30" r="18" fill="rgba(232,183,48,0.1)"/>
+            <circle class="sv-node sv-settle-node-l" cx="75" cy="30" r="9" fill="#e8b730" opacity="0.85"/>
+            <circle class="sv-node-glow sv-settle-node-glow-r" cx="175" cy="30" r="18" fill="rgba(26,111,196,0.1)"/>
+            <circle class="sv-node sv-settle-node-r" cx="175" cy="30" r="9" fill="#1a6fc4" opacity="0.85"/>
+            {# Channel line between nodes (draws in first) #}
+            <line class="sv-settle-channel-draw" x1="86" y1="30" x2="164" y2="30"
+              stroke="#1a6fc4" stroke-width="1.5" stroke-dasharray="4 3"/>
+            {# Channel line that dissolves later #}
+            <line class="sv-settle-channel" x1="86" y1="30" x2="164" y2="30"
+              stroke="rgba(26,111,196,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+            {# Vertical settle line from channel midpoint down to blockchain #}
+            <line class="sv-settle-line" x1="125" y1="40" x2="125" y2="95"
+              stroke="#e8b730" stroke-width="1.5" stroke-dasharray="5 3" stroke-linecap="round"/>
+            {# Energy dot flowing down the settle line #}
+            <circle class="sv-settle-energy" cx="125" cy="40" r="4" fill="#e8b730" filter="url(#blockGlow)"/>
+            {# Blockchain row #}
+            <g class="sv-blockchain">
+              <line x1="78" y1="110" x2="88" y2="110" stroke="rgba(26,111,196,0.25)" stroke-width="1.5"/>
+              <line x1="120" y1="110" x2="130" y2="110" stroke="rgba(26,111,196,0.25)" stroke-width="1.5"/>
+              <line x1="162" y1="110" x2="172" y2="110" stroke="rgba(26,111,196,0.25)" stroke-width="1.5"/>
+              <rect class="sv-block" x="48" y="100" width="30" height="20" rx="4"
+                fill="#0e1e2c" stroke="rgba(26,111,196,0.3)" stroke-width="1"/>
+              <rect class="sv-block" x="88" y="100" width="30" height="20" rx="4"
+                fill="#0e1e2c" stroke="rgba(26,111,196,0.3)" stroke-width="1"/>
+              <rect class="sv-block" x="130" y="100" width="30" height="20" rx="4"
+                fill="#0e1e2c" stroke="rgba(26,111,196,0.3)" stroke-width="1"/>
+              <rect class="sv-block sv-block-settled" x="172" y="100" width="30" height="20" rx="4"
+                fill="#0e1e2c" stroke="#e8b730" stroke-width="1.5"/>
+              <polyline class="sv-block-check" points="180,110 185,115 194,105"
+                fill="none" stroke="#e8b730" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </svg>
+        </div>
+        <div class="step-text">
+          <div class="step-number">03</div>
+          <h3>{{ site.howItWorks.steps[2].title }}</h3>
+          <p>{{ site.howItWorks.steps[2].description }}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
