@@ -50,9 +50,16 @@ if (lightningBg) {
   }
 }
 
+// ===== Switch node tabs =====
+function switchNodeTab(index) {
+  document.querySelectorAll('.node-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.node-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('.node-tab[data-tab="' + index + '"]').classList.add('active');
+  document.querySelector('.node-panel[data-panel="' + index + '"]').classList.add('active');
+}
+
 // ===== Copy pubkey =====
-function copyPubkey() {
-  const box = document.getElementById('pubkey');
+function copyPubkey(box) {
   const text = box.querySelector('span').textContent;
   navigator.clipboard.writeText(text).then(() => {
     const hint = box.querySelector('.pubkey-hint');
@@ -199,7 +206,7 @@ if (networkCanvas) {
       byDist.forEach(o => closestIds.add(o.i));
     }
 
-    // connections — use smoothed glow for line boost
+    // connections - use smoothed glow for line boost
     for (let i = 0; i < nodes.length; i++) {
       for (let j = i + 1; j < nodes.length; j++) {
         const dx = nodes[i].x - nodes[j].x;
@@ -220,7 +227,7 @@ if (networkCanvas) {
       }
     }
 
-    // nodes — smooth glow fade in/out
+    // nodes - smooth glow fade in/out
     const t = time * 0.001;
     nodes.forEach((n, idx) => {
       // Compute target glow: 1 if among 3 closest, 0 otherwise
@@ -368,7 +375,7 @@ if (lnCanvas) {
   channels.push([11, 12]);
   channels.push([13, 14]);
 
-  // Payment packets — slower speed
+  // Payment packets - slower speed
   var packets = [];
   function spawnPacket() {
     var ch = channels[Math.floor(Math.random() * channels.length)];
@@ -472,7 +479,7 @@ if (lnCanvas) {
       lnCtx.fill();
     }
 
-    // Hub lightning bolt icon — follows hub position
+    // Hub lightning bolt icon - follows hub position
     var hubPos = pos[0];
     lnCtx.save();
     lnCtx.translate(hubPos.x, hubPos.y);

@@ -1,66 +1,101 @@
 <section class="node-section section" id="node">
   <div class="container">
     <div class="section-header reveal">
-      <div class="section-tag">{{ site.node.tag }}</div>
-      <h2>{{ site.node.title }} <span class="gradient-text">{{ site.node.titleAccent }}</span></h2>
-      <p>{{ site.node.description }}</p>
+      <div class="section-tag">{{ site.nodeSection.tag }}</div>
+      <h2>{{ site.nodeSection.title }} <span class="gradient-text">{{ site.nodeSection.titleAccent }}</span></h2>
+      <p>{{ site.nodeSection.description }}</p>
     </div>
-    <div class="node-card reveal">
-      <div class="node-header">
-        <div class="node-title">
-          <div class="node-icon">
+    <div class="node-tabs-wrap reveal">
+      <div class="node-tabs">
+        {% for node in site.nodes %}
+        <button class="node-tab{% if loop.first %} active{% endif %}" data-tab="{{ loop.index0 }}" onclick="switchNodeTab({{ loop.index0 }})">
+          <div class="node-tab-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
           </div>
-          <div>
-            <h3>{{ site.node.name }}</h3>
-            {% if site.node.subtitle %}<span>{{ site.node.subtitle }}</span>{% endif %}
-          </div>
-        </div>
-        <div class="node-status">
-          <div class="dot"></div>
-          {{ site.node.status }}
-        </div>
-      </div>
-      <div class="node-body">
-        <div class="pubkey-section">
-          <div class="pubkey-label">Public Key</div>
-          <div class="pubkey-value" id="pubkey" title="Click to copy" onclick="copyPubkey()">
-            <span>{{ site.node.pubkey }}</span>
-            <span class="pubkey-hint">Click to copy</span>
-            <button class="copy-btn" aria-label="Copy">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="node-info-grid">
-          {% for info in site.node.info %}
-            <div class="node-info-item">
-              <div class="label">{{ info.label }}</div>
-              <div class="value{% if info.color === 'accent' %} text-accent{% elif info.color === 'green' %} text-green{% endif %}">{{ info.value }}</div>
+          <div class="node-tab-info">
+            <span class="node-tab-name">{{ node.name }}</span>
+            <div class="node-tab-badges">
+              <span class="node-type node-type--{{ node.type | lower }}">
+                {% if node.type == "TOR" %}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                {% else %}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                {% endif %}
+                {{ node.type }}
+              </span>
+              <span class="node-selling-point node-selling-point--{{ node.type | lower }}">{{ node.typeDescription }}</span>
             </div>
-          {% endfor %}
-        </div>
-        {% if site.node.mempoolUrl %}
-        <div class="node-mempool">
-          <a href="{{ site.node.mempoolUrl }}" target="_blank" rel="noopener" class="mempool-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-            View on mempool.space
-          </a>
-        </div>
-        {% endif %}
+          </div>
+          <div class="node-tab-status">
+            <div class="dot"></div>
+            {{ node.status }}
+          </div>
+        </button>
+        {% endfor %}
       </div>
-      <div class="node-footer">
-        <p>{{ site.node.footerText | safe }}</p>
-        <a href="{{ site.node.footerCta.href }}" class="btn btn-primary" target="_blank" rel="noopener">{{ site.node.footerCta.label }}</a>
+      <div class="node-card">
+        {% for node in site.nodes %}
+        <div class="node-panel{% if loop.first %} active{% endif %}" data-panel="{{ loop.index0 }}">
+          <div class="node-body">
+            <div class="node-panel-header">
+              <h3>{{ node.name }}</h3>
+            </div>
+            <div class="pubkey-section">
+              <div class="pubkey-label">Public Key</div>
+              <div class="pubkey-value" title="Click to copy" onclick="copyPubkey(this)">
+                <span>{{ node.pubkey }}</span>
+                <span class="pubkey-hint">Click to copy</span>
+                <button class="copy-btn" aria-label="Copy">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="node-info-grid">
+              {% for info in node.info %}
+                <div class="node-info-item">
+                  <div class="label">{{ info.label }}</div>
+                  <div class="value{% if info.color === 'accent' %} text-accent{% elif info.color === 'green' %} text-green{% endif %}">{{ info.value }}</div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="node-links">
+              {% if node.mempoolUrl %}
+              <a href="{{ node.mempoolUrl }}" target="_blank" rel="noopener" class="node-ext-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                mempool.space
+              </a>
+              {% endif %}
+              {% if node.ambossUrl %}
+              <a href="{{ node.ambossUrl }}" target="_blank" rel="noopener" class="node-ext-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                amboss.space
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
       </div>
+    </div>
+    <div class="node-footer-section reveal">
+      <p>{{ site.nodeSection.footerText | safe }}</p>
+      <a href="{{ site.nodeSection.footerCta.href }}" class="btn btn-primary" target="_blank" rel="noopener">{{ site.nodeSection.footerCta.label }}</a>
     </div>
   </div>
 </section>
