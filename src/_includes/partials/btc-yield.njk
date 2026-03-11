@@ -1,0 +1,103 @@
+<section class="yield-section section" id="btc-yield">
+  <div class="container">
+    <div class="yield-layout">
+      <div class="yield-content reveal">
+        <div class="section-tag">BV Prime</div>
+        <h2>Earn Native BTC Yield Through Professional <span class="gradient-text">Lightning Routing</span></h2>
+        <p class="yield-lead">A BV Prime private client offering for qualified investors deploying Bitcoin into managed Lightning liquidity operations.</p>
+        <p class="yield-body">Bitcoin-native yield through real payment infrastructure - built for capital efficiency, resilience, and long-term ecosystem alignment.</p>
+        <p class="yield-note">Minimum allocation, onboarding, and eligibility terms apply.</p>
+        <div class="yield-min">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          Minimum allocation: 1 BTC
+        </div>
+      </div>
+      <div class="yield-form-wrap reveal reveal-delay-1">
+        <div class="yield-form">
+          <h3>Enquire About BTC Liquidity Deployment</h3>
+          <div id="zammad-yield-form"></div>
+          <p class="yield-disclaimer">This service is offered on a private-placement basis and is subject to eligibility, onboarding, and risk review. Returns are not guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script id="zammad_form_script" src="https://support.bitcoinvn.io/assets/form/form.js"></script>
+<script>
+  $(function () {
+    $('#zammad-yield-form').ZammadForm({
+      messageTitle: 'Lightning Yield Inquiry',
+      messageSubmit: 'Submit Enquiry',
+      messageThankYou: 'Thank you for your enquiry! We\'ll be in touch shortly.',
+      modal: false,
+    });
+
+    /* Inject custom fields after Zammad renders */
+    var waitForForm = setInterval(function () {
+      var $body = $('#zammad-yield-form textarea[name="body"]');
+      if (!$body.length) return;
+      clearInterval(waitForForm);
+
+      /* Telegram / Signal handle */
+      var handleHtml =
+        '<div class="form-group">' +
+          '<label for="yield-handle">Telegram / Signal handle</label>' +
+          '<input type="text" id="yield-handle" name="handle" class="form-control" placeholder="@handle" />' +
+        '</div>';
+
+      /* Indicative BTC allocation */
+      var allocationHtml =
+        '<div class="form-group">' +
+          '<label for="yield-allocation">Indicative BTC allocation size</label>' +
+          '<input type="text" id="yield-allocation" name="allocation" class="form-control" required placeholder="e.g. 5 BTC" />' +
+        '</div>';
+
+      $body.closest('.form-group').before(handleHtml + allocationHtml);
+
+      /* Qualified investor checkbox */
+      var checkboxHtml =
+        '<div class="form-checkbox">' +
+          '<input type="checkbox" id="yield-qualified" name="qualified" required />' +
+          '<label for="yield-qualified">I understand this offering is intended for qualified / professional investors only</label>' +
+        '</div>';
+
+      $body.closest('.form-group').after(checkboxHtml);
+
+      /* Prepend custom fields to message on submit */
+      var $form = $('#zammad-yield-form form');
+      $form.on('submit', function (e) {
+        var $alloc = $('#yield-allocation');
+        if (!$alloc.val()) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          $alloc.css('border-color', 'rgba(220, 80, 80, 0.6)');
+          $alloc.focus();
+          return false;
+        }
+        var $check = $('#yield-qualified');
+        if (!$check.is(':checked')) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          $check.focus();
+          return false;
+        }
+        $alloc.css('border-color', '');
+        var handle = $('#yield-handle').val() || '(not provided)';
+        var allocation = $alloc.val();
+        var original = $body.val();
+        $body.val(
+          '[Lightning Yield Enquiry]\n' +
+          'Telegram/Signal: ' + handle + '\n' +
+          'Indicative allocation: ' + allocation + '\n' +
+          'Qualified investor: Yes\n\n' +
+          original
+        );
+        $body.css('color', 'transparent');
+      });
+    }, 200);
+  });
+</script>

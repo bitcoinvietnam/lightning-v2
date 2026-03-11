@@ -1529,6 +1529,281 @@ img { max-width: 100%; display: block; }
   flex-wrap: wrap;
 }
 
+/* ===== BTC YIELD SECTION ===== */
+.yield-section {
+  background: var(--bg-deep);
+  position: relative;
+  overflow: hidden;
+}
+.yield-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(232, 183, 48, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 80% 70%, rgba(26, 111, 196, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+.yield-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+.yield-content h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+.yield-lead {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.yield-body {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.yield-note {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.yield-min {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--accent-glow);
+  border: 1px solid rgba(232, 183, 48, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+/* Yield form */
+.yield-form-wrap {
+  position: sticky;
+  top: 100px;
+}
+.yield-form {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(26, 111, 196, 0.08) 0%, transparent 60%),
+    linear-gradient(160deg, #081420 0%, #0a1a2a 40%, #0c1e30 70%, #081822 100%);
+  border: 1px solid rgba(26, 111, 196, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  position: relative;
+  box-shadow:
+    0 4px 40px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(26, 111, 196, 0.04);
+}
+.yield-form::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--blue), var(--accent));
+  background-size: 200% 100%;
+  animation: gradient-shift 6s ease infinite;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.yield-form h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(10, 22, 32, 0.6);
+  border: 1px solid rgba(26, 111, 196, 0.12);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--border-hover);
+  background: rgba(10, 22, 32, 0.8);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.form-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.form-checkbox label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  cursor: pointer;
+}
+.yield-submit {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-align: center;
+}
+.yield-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+  margin-top: 14px;
+  line-height: 1.6;
+  text-align: center;
+}
+/* Zammad form overrides for dark theme */
+#zammad-yield-form .form-group {
+  margin-bottom: 18px;
+}
+#zammad-yield-form label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+#zammad-yield-form .form-control,
+#zammad-yield-form input[type="text"],
+#zammad-yield-form input[type="email"],
+#zammad-yield-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(10, 22, 32, 0.6);
+  border: 1px solid rgba(26, 111, 196, 0.12);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+  box-sizing: border-box;
+}
+#zammad-yield-form .form-control::placeholder,
+#zammad-yield-form input::placeholder,
+#zammad-yield-form textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+#zammad-yield-form .form-control:focus,
+#zammad-yield-form input:focus,
+#zammad-yield-form textarea:focus {
+  border-color: var(--border-hover);
+  background: rgba(10, 22, 32, 0.8);
+}
+#zammad-yield-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+#zammad-yield-form button[type="submit"],
+#zammad-yield-form input[type="submit"],
+.yield-form button[type="submit"],
+.yield-form input[type="submit"] {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  text-align: center !important;
+  display: block !important;
+  background: linear-gradient(135deg, var(--accent) 0%, #d4a428 100%);
+  color: #000;
+  border: none;
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin-top: 8px;
+}
+#zammad-yield-form button[type="submit"]:hover,
+#zammad-yield-form input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(232, 183, 48, 0.3);
+}
+#zammad-yield-form .form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 18px 0;
+}
+#zammad-yield-form .form-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+#zammad-yield-form .form-checkbox label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+/* Zammad thank-you message */
+#zammad-yield-form .thankyou {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--green);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
 /* ===== FOOTER ===== */
 .footer {
   background: var(--bg-deep);
@@ -1536,48 +1811,39 @@ img { max-width: 100%; display: block; }
   position: relative;
   z-index: 1;
 }
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 48px;
+.footer > .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
 }
-.footer-brand .logo {
-  margin-bottom: 0;
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
-.footer-brand .logo-img {
-  height: 28px;
-}
-.footer-brand p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-top: 16px;
-  line-height: 1.8;
-  max-width: 340px;
-  font-weight: 400;
-}
-.footer-col h4 {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin-bottom: 18px;
-}
-.footer-col a {
-  display: block;
-  padding: 6px 0;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  transition: color 0.2s;
-}
-.footer-col a:hover { color: var(--accent); }
-.footer-bottom {
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+.footer-logo {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+.footer-logo:hover { color: var(--accent); }
+.footer-logo-img {
+  height: 28px;
+  width: auto;
+  flex-shrink: 0;
+}
+.footer-logo .logo-divider {
+  height: 20px;
+  flex-shrink: 0;
+}
+.footer-tagline {
   font-size: 0.85rem;
   color: var(--text-muted);
 }
@@ -1681,7 +1947,8 @@ img { max-width: 100%; display: block; }
   .what-is-grid { grid-template-columns: 1fr; }
   .what-is-visual { display: none; }
   .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .yield-layout { grid-template-columns: 1fr; gap: 40px; }
+  .yield-form-wrap { position: static; }
 }
 @media (max-width: 768px) {
   .section { padding: 80px 0; }
