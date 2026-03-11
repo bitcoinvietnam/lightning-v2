@@ -21,14 +21,19 @@
         "href": "#how-it-works"
       },
       {
-        "label": "Nodes",
+        "label": "Connect Nodes",
         "href": "#node"
+      },
+      {
+        "label": "BTC Yield",
+        "href": "#btc-yield"
+      },
+      {
+        "label": "Exchange BTC",
+        "href": "https://bitcoinvn.io/?deposit=btcln&settle=vnd",
+        "external": true
       }
-    ],
-    "cta": {
-      "label": "Exchange BTC",
-      "href": "https://bitcoinvn.io/?deposit=btcln&settle=vnd"
-    }
+    ]
   },
   "hero": {
     "badge": "Network Active - 16,000+ Nodes Online",
