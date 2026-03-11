@@ -40,7 +40,7 @@
     "headlinePart1": "Bitcoin Payments",
     "headlinePart2": "at the",
     "headlineAccent": "Speed of Light",
-    "description": "Instant Bitcoin transactions with near-zero fees. BitcoinVN powers fast BTC-to-VND settlements across Vietnam.",
+    "description": "Instant and private Bitcoin payments with near-zero fees. Swap instantly to and from any supported asset on BitcoinVN.",
     "primaryCta": {
       "label": "Connect to Our Node",
       "href": "#node"
@@ -86,7 +86,7 @@
     "titleSuffix": "for Instant Payments",
     "paragraphs": [
       "Bitcoin is the world's most trusted cryptocurrency - but its base layer handles only ~7 transactions per second to preserve decentralization.",
-      "The Lightning Network is a Layer 2 protocol that creates payment channels between users, enabling millions of transactions per second off-chain."
+      "The Lightning Network is a Layer 2 protocol that creates payment channels between users, enabling millions of transactions per second while final settlement remains secured by the Bitcoin blockchain."
     ],
     "highlight": "Payment data stays between peers. The Bitcoin blockchain serves only as the final settlement layer - preserving speed and privacy."
   },
