@@ -27,7 +27,7 @@
     ],
     "cta": {
       "label": "Exchange BTC",
-      "href": "#exchange"
+      "href": "https://bitcoinvn.io/?deposit=btcln&settle=vnd"
     }
   },
   "hero": {

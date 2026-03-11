@@ -9,7 +9,7 @@
       {% for link in site.nav.links %}
         <a href="{{ link.href }}">{{ link.label }}</a>
       {% endfor %}
-      <a href="{{ site.nav.cta.href }}" class="btn btn-outline">{{ site.nav.cta.label }}</a>
+      <a href="{{ site.nav.cta.href }}" class="btn btn-outline" target="_blank" rel="noopener">{{ site.nav.cta.label }}</a>
     </div>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
       <span></span><span></span><span></span>
