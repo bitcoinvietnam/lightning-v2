@@ -62,15 +62,11 @@ function switchNodeTab(index) {
 function copyPubkey(box) {
   const text = box.querySelector('span').textContent;
   navigator.clipboard.writeText(text).then(() => {
-    const hint = box.querySelector('.pubkey-hint');
     const btn = box.querySelector('.copy-btn');
-    const originalHint = hint.textContent;
     const originalBtn = btn.innerHTML;
-    hint.textContent = 'Copied!';
-    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+    btn.innerHTML = '<span class="copied-hint">Copied</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
     box.classList.add('copied');
     setTimeout(() => {
-      hint.textContent = originalHint;
       btn.innerHTML = originalBtn;
       box.classList.remove('copied');
     }, 2000);
@@ -502,6 +498,127 @@ if (lnCanvas) {
 
   requestAnimationFrame(lnDraw);
 }
+
+// ===== Node rank count-up + live refresh =====
+(function () {
+  function animateRank(el, target) {
+    var duration = 1200;
+    var start = performance.now();
+    function step(now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(target * ease);
+      el.textContent = '#' + current.toLocaleString();
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = '#' + target.toLocaleString();
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  // Count-up animation on scroll for build-time values
+  var rankEls = document.querySelectorAll('[data-rank-to]');
+  if (rankEls.length) {
+    var rankObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var target = parseInt(entry.target.getAttribute('data-rank-to'));
+          if (target) animateRank(entry.target, target);
+          rankObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    rankEls.forEach(function (el) { rankObserver.observe(el); });
+  }
+
+  // Live refresh from Amboss API (CORS workaround via allorigins proxy)
+  var rankContainers = document.querySelectorAll('.node-ranks[data-pubkey]');
+  rankContainers.forEach(function (container) {
+    var pubkey = container.getAttribute('data-pubkey');
+    if (!pubkey) return;
+
+    var query = '{ getNode(pubkey: "' + pubkey + '") { last_update graph_info { metrics { capacity_rank channels_rank capacity_rank_change { day } channels_rank_change { day } } } } }';
+    var proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(
+      'https://api.amboss.space/graphql?query=' + encodeURIComponent(query)
+    );
+
+    function updateChange(rankDiv, value) {
+      var changeEl = rankDiv.querySelector('.node-rank-change');
+      if (value > 0) {
+        if (!changeEl) {
+          changeEl = document.createElement('span');
+          changeEl.className = 'node-rank-change';
+          rankDiv.appendChild(changeEl);
+        }
+        changeEl.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg> ' + value.toLocaleString();
+      }
+    }
+
+    fetch(proxyUrl)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var nodeData = data && data.data && data.data.getNode;
+        if (!nodeData) return;
+
+        // Update online status based on last_update timestamp
+        var lastUpdate = nodeData.last_update;
+        if (lastUpdate) {
+          var nowSec = Math.floor(Date.now() / 1000);
+          var ageSec = nowSec - parseInt(lastUpdate);
+          var isOnline = ageSec < 7200; // within 2 hours = online
+          // Find matching tab by pubkey
+          var tabs = document.querySelectorAll('.node-tab');
+          var panels = document.querySelectorAll('.node-panel');
+          tabs.forEach(function (tab, idx) {
+            var panel = panels[idx];
+            if (!panel) return;
+            var panelPubkey = panel.querySelector('.node-ranks[data-pubkey]');
+            if (panelPubkey && panelPubkey.getAttribute('data-pubkey') === pubkey) {
+              var statusEl = tab.querySelector('.node-tab-status');
+              if (statusEl) {
+                if (isOnline) {
+                  statusEl.classList.remove('offline');
+                  statusEl.innerHTML = '<div class="dot"></div> Online';
+                } else {
+                  statusEl.classList.add('offline');
+                  statusEl.innerHTML = '<div class="dot"></div> Offline';
+                }
+              }
+            }
+          });
+        }
+
+        var metrics = nodeData.graph_info && nodeData.graph_info.metrics;
+        if (!metrics) return;
+
+        var rankDivs = container.querySelectorAll('.node-rank');
+        var channelsEl = rankDivs[0] && rankDivs[0].querySelector('[data-rank-to]');
+        var capacityEl = rankDivs[1] && rankDivs[1].querySelector('[data-rank-to]');
+
+        if (channelsEl && metrics.channels_rank) {
+          var current = parseInt(channelsEl.getAttribute('data-rank-to'));
+          if (current !== metrics.channels_rank) {
+            channelsEl.setAttribute('data-rank-to', metrics.channels_rank);
+            animateRank(channelsEl, metrics.channels_rank);
+          }
+          updateChange(rankDivs[0], metrics.channels_rank_change && metrics.channels_rank_change.day);
+        }
+        if (capacityEl && metrics.capacity_rank) {
+          var current = parseInt(capacityEl.getAttribute('data-rank-to'));
+          if (current !== metrics.capacity_rank) {
+            capacityEl.setAttribute('data-rank-to', metrics.capacity_rank);
+            animateRank(capacityEl, metrics.capacity_rank);
+          }
+          updateChange(rankDivs[1], metrics.capacity_rank_change && metrics.capacity_rank_change.day);
+        }
+      })
+      .catch(function () {
+        // silently fail - build-time values remain
+      });
+  });
+})();
 
 // ===== Smooth scroll for anchor links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

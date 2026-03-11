@@ -161,7 +161,7 @@
       "status": "Online",
       "pubkey": "026af41af0e3861ba170cc0eef8f45a1015125dac57c28df53752dcaeea793b28f",
       "mempoolUrl": "https://mempool.space/lightning/node/026af41af0e3861ba170cc0eef8f45a1015125dac57c28df53752dcaeea793b28f",
-      "ambossUrl": "",
+      "ambossUrl": "https://amboss.space/node/026af41af0e3861ba170cc0eef8f45a1015125dac57c28df53752dcaeea793b28f",
       "info": [
         {
           "label": "Access",
@@ -191,7 +191,7 @@
       "typeDescription": "Faster routing",
       "status": "Online",
       "pubkey": "02affc6db7e022acde224403e096b0dafc1a245547f67bb1123706d2ff130f038a",
-      "mempoolUrl": "https://mempool.space/lightning/node/02affc6db7e022acde224403e096b0dafc1a245547f67bb1123706d2ff130f038a",
+      "mempoolUrl": "",
       "ambossUrl": "https://amboss.space/node/02affc6db7e022acde224403e096b0dafc1a245547f67bb1123706d2ff130f038a",
       "info": [
         {

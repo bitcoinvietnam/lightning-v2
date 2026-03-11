@@ -7,6 +7,10 @@ module.exports = function (eleventyConfig) {
     return String(num).padStart(size || 2, "0");
   });
 
+  eleventyConfig.addFilter("localeString", (num) => {
+    return Number(num).toLocaleString();
+  });
+
   return {
     dir: {
       input: "src",
